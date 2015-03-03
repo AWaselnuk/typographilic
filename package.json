@@ -1,0 +1,29 @@
+{
+  "name": "Typographilic",
+  "version": "",
+  "description": "A simple tool for creating typographic scales and systems.",
+  "main": "",
+  "author": "Adam Waselnuk",
+  "license": "MIT",
+  "scripts": {
+    "doctor": "npm -v && ruby -v && sass -v && echo 'READY TO ROCK!' || echo 'MISSING DEPENDENCY. Make sure you have installed npm, ruby, and sass.'",
+    "autoprefixer": "autoprefixer assets/css/*.css",
+    "build:styles": "npm run sass && npm run autoprefixer",
+    "build:scripts": "npm run coffeescript",
+    "build": "npm run build:scripts",
+    "watch": "watch 'npm run build' src",
+    "serve": "browser-sync start --server --files 'assets/css/*.css, assets/js/*.js'",
+    "test": "",
+    "develop": "npm run build && parallelshell 'npm run watch'",
+    "sass": "sass src/scss/application.scss assets/css/application.css",
+    "coffeescript": "cat src/coffeescript/*.coffee | coffee -cs > assets/js/application.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "latest",
+    "browser-sync": "latest",
+    "parallelshell": "latest",
+    "watch": "latest",
+    "coffee-script": "latest"
+  }
+}
