@@ -25,7 +25,7 @@ To create a multi stranded modular scale, simply pass in an array of base sizes 
 
 ## Support
 
-Simply file an issue here in Github.
+Please file any issues in [Github](https://github.com/AWaselnuk/typographilic/issues).
 
 ## Contributing
 
