@@ -1,4 +1,4 @@
-# Project Title
+# Typographilic
 
 Typographilic is a simple tool for creating typographic scales and systems.
 
@@ -19,7 +19,7 @@ To create a simple modular scale, simply pass in your scale factor, base line he
 
     var typography = typographilic.scale(1.618, 1.4, 16);
 
-To create a multi stranded modular scale system, simply pass in an array of base sizes as the last argument:
+To create a multi stranded modular scale, simply pass in an array of base sizes as the last argument:
 
     var typography = typographilic.scale(1.4, 1.618, [12, 16]);
 
