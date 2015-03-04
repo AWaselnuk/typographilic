@@ -25,11 +25,12 @@ To create a multi stranded modular scale, simply pass in an array of base sizes 
 
 ## Support
 
-How to ask questions or raise concerns.
+Simply file an issue here in Github.
 
 ## Contributing
 
-How to contribute.
+Please include a test for new features following the existing testing patterns.
+Note that this project is written in Coffeescript and is tested with Chai and Mocha.
 
 ## License
 
