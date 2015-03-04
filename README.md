@@ -1,6 +1,6 @@
 # Project Title
 
-Typographilic is a simple javascript tool for creating typographic scales and systems.
+Typographilic is a simple tool for creating typographic scales and systems.
 
 ## Installation
 
@@ -8,16 +8,20 @@ Typographilic works the exact same in any javascript runtime (browser or Node.js
 
     npm install typographilic
 
+Then in your project:
+
+    var typographilic = require('typographilic');
+
 ## Usage
 
 Typographilic offers a single method.
-To create a simple modular scale, simply pass in your base font size (in pixels), line height, and scale factor:
+To create a simple modular scale, simply pass in your scale factor, base line height, and base font size (in pixels):
 
-    var typography = Typographilic.modularScale(16, 1.4, 1.618);
+    var typography = typographilic.scale(1.618, 1.4, 16);
 
-To create a multi stranded modular scale system, simply pass in an array of base sizes as the first argument:
+To create a multi stranded modular scale system, simply pass in an array of base sizes as the last argument:
 
-    var typography = Typographilic.doubleStrandedScale([12, 16], 1.4, 1.618);
+    var typography = typographilic.scale(1.4, 1.618, [12, 16]);
 
 ## Support
 
