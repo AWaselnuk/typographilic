@@ -13,7 +13,7 @@
     "build": "npm run build:scripts",
     "watch": "watch 'npm run build' src",
     "serve": "browser-sync start --server --files 'assets/css/*.css, assets/js/*.js'",
-    "test": "",
+    "test": "mocha",
     "develop": "npm run build && parallelshell 'npm run watch'",
     "sass": "sass src/scss/application.scss assets/css/application.css",
     "coffeescript": "cat src/coffeescript/*.coffee | coffee -cs > assets/js/application.js"
@@ -22,8 +22,9 @@
   "devDependencies": {
     "autoprefixer": "latest",
     "browser-sync": "latest",
+    "chai": "^2.1.0",
+    "coffee-script": "latest",
     "parallelshell": "latest",
-    "watch": "latest",
-    "coffee-script": "latest"
+    "watch": "latest"
   }
 }
