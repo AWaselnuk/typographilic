@@ -2,7 +2,7 @@
   "name": "Typographilic",
   "version": "",
   "description": "A simple tool for creating typographic scales and systems.",
-  "main": "",
+  "main": "assets/js/application.js",
   "author": "Adam Waselnuk",
   "license": "MIT",
   "scripts": {
