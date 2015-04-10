@@ -46,7 +46,7 @@ describe 'typographilic', ->
 
     it 'accepts multiple base font sizes', ->
       expect(typographilic.scale('goldenRatio', 1.4, [12, 16]).fontSizes.px).to.eql(
-        [10, 16, 26, 42, 68, 110, 178]
+        [10, 12, 16, 19, 26, 31, 42, 50, 68, 81, 110, 131, 178]
       )
 
 
