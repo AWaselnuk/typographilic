@@ -54,16 +54,39 @@ normalizeFontSizes = (baseFontSizes) ->
     baseFontSizes = [baseFontSizes]
   baseFontSizes.forEach (fontSize) -> parseFloat fontSize
 
+  baseFontSizes
+
+# Scales up a font size
+scaleUp = (size, scaleFactor) -> Math.round(size * scaleFactor)
+
+# Scales down a font size
+scaleDown = (size, scaleFactor) -> Math.round(size / scaleFactor)
+
+# Produce an array of font sizes based on a scale factor
+scaleFontSizesToPx = (scaleFactor, baseFontSizes) ->
+  fontSizes = []
+  baseFontSizes.forEach (fontSize) ->
+    currentSize = fontSize
+    fontSizes.push currentSize
+    while (currentSize = scaleDown(currentSize, scaleFactor)) >= 10
+      fontSizes.push currentSize
+    currentSize = fontSize
+    while (currentSize = scaleUp(currentSize, scaleFactor)) <= 200
+      fontSizes.push currentSize
+
+  fontSizes.sort (a, b) -> a - b
+
 # The scale function returns an large object with all the typographic tools
 scale = (scaleFactor, lineHeight, baseFontSizes) ->
   scaleFactor = normalizeScaleFactor(scaleFactor)
   lineHeight = normalizeLineHeight(lineHeight)
   baseFontSizes = normalizeFontSizes(baseFontSizes)
+
   {
     scaleFactor: scaleFactor,
     lineHeight: lineHeight,
     fontSizes:
-      px: []
+      px: scaleFontSizesToPx(scaleFactor, baseFontSizes)
       em: []
       rem: []
   }

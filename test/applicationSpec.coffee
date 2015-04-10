@@ -39,13 +39,14 @@ describe 'typographilic', ->
       expect(scale.fontSizes.rem).to.be.an.instanceOf(Array)
 
     it 'accepts a single base font size', ->
-      expect(typographilic.scale('goldenRatio', 1.4, 16).fontSizes.px).to.equal(
-        [10, 16, 26, 42, 68, 110]
+      # .eql asserts that target is deeply equal to value
+      expect(typographilic.scale('goldenRatio', 1.4, 16).fontSizes.px).to.eql(
+        [10, 16, 26, 42, 68, 110, 178]
       )
 
     it 'accepts multiple base font sizes', ->
-      expect(typographilic.scale('goldenRatio', 1.4, [12, 16]).fontSizes.px).to.equal(
-        [10, 16, 26, 42, 68, 110]
+      expect(typographilic.scale('goldenRatio', 1.4, [12, 16]).fontSizes.px).to.eql(
+        [10, 16, 26, 42, 68, 110, 178]
       )
 
 
