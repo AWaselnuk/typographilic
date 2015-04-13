@@ -38,16 +38,37 @@ describe 'typographilic', ->
       expect(scale.fontSizes.em).to.be.an.instanceOf(Array)
       expect(scale.fontSizes.rem).to.be.an.instanceOf(Array)
 
-    it 'accepts a single base font size', ->
+    it 'returns pixels for a single base font size', ->
       # .eql asserts that target is deeply equal to value
       expect(typographilic.scale('goldenRatio', 1.4, 16).fontSizes.px).to.eql(
         [10, 16, 26, 42, 68, 110, 178]
       )
 
-    it 'accepts multiple base font sizes', ->
-      expect(typographilic.scale('goldenRatio', 1.4, [12, 16]).fontSizes.px).to.eql(
+    it 'returns pixels for multiple base font sizes', ->
+      expect(typographilic.scale('goldenRatio', 1.4, [16, 12]).fontSizes.px).to.eql(
         [10, 12, 16, 19, 26, 31, 42, 50, 68, 81, 110, 131, 178]
       )
 
+    it 'returns ems for a single base font size', ->
+      # .eql asserts that target is deeply equal to value
+      expect(typographilic.scale('goldenRatio', 1.4, 16).fontSizes.em).to.eql(
+        [0.625, 1, 1.625, 2.625, 4.25, 6.875, 11.125]
+      )
+
+    it 'returns ems for multiple base font sizes, using the first size as the base', ->
+      expect(typographilic.scale('goldenRatio', 1.4, [16, 12]).fontSizes.em).to.eql(
+        [0.625, 12, 1, 19, 1.625, 31, 2.625, 50, 4.25, 81, 6.875, 131, 11.125]
+      )
+
+    it 'returns rems for a single base font size', ->
+      # .eql asserts that target is deeply equal to value
+      expect(typographilic.scale('goldenRatio', 1.4, 16).fontSizes.rem).to.eql(
+        [0.625, 1, 1.625, 2.625, 4.25, 6.875, 11.125]
+      )
+
+    it 'returns rems for multiple base font sizes', ->
+      expect(typographilic.scale('goldenRatio', 1.4, [16, 12]).fontSizes.rem).to.eql(
+        [0.625, 12, 1, 19, 1.625, 31, 2.625, 50, 4.25, 81, 6.875, 131, 11.125]
+      )
 
 
