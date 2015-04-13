@@ -57,7 +57,7 @@ describe 'typographilic', ->
 
     it 'returns ems for multiple base font sizes, using the first size as the base', ->
       expect(typographilic.scale('goldenRatio', 1.4, [16, 12]).fontSizes.em).to.eql(
-        [0.625, 12, 1, 19, 1.625, 31, 2.625, 50, 4.25, 81, 6.875, 131, 11.125]
+        [0.625, 0.75, 1, 1.1875, 1.625, 1.9375, 2.625, 3.125, 4.25, 5.0625, 6.875, 8.1875, 11.125]
       )
 
     it 'returns rems for a single base font size', ->
@@ -68,7 +68,7 @@ describe 'typographilic', ->
 
     it 'returns rems for multiple base font sizes', ->
       expect(typographilic.scale('goldenRatio', 1.4, [16, 12]).fontSizes.rem).to.eql(
-        [0.625, 12, 1, 19, 1.625, 31, 2.625, 50, 4.25, 81, 6.875, 131, 11.125]
+        [0.625, 0.75, 1, 1.1875, 1.625, 1.9375, 2.625, 3.125, 4.25, 5.0625, 6.875, 8.1875, 11.125]
       )
 
 
