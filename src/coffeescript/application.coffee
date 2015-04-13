@@ -1,4 +1,6 @@
-scaleFactorMap =
+ROOT_FONT_SIZE = 16 # Used to calculate REM
+
+SCALE_FACTOR_MAP =
   minorSecond: 1.067
   '15:16': 1.067
   majorSecond: 1.125
@@ -39,8 +41,8 @@ scaleFactorMap =
 # Produce a float from the given scale factor
 # The scale factor map provides human readable short cuts
 normalizeScaleFactor = (scaleFactor) ->
-  if scaleFactorMap[scaleFactor]
-    scaleFactorMap[scaleFactor]
+  if SCALE_FACTOR_MAP[scaleFactor]
+    SCALE_FACTOR_MAP[scaleFactor]
   else
     parseFloat scaleFactor
 
@@ -76,19 +78,31 @@ scaleFontSizesToPx = (scaleFactor, baseFontSizes) ->
 
   fontSizes.sort (a, b) -> a - b
 
+# Convert an array of pixel sizes to ems
+convertPxToEm = (pxFontSizes, baseFontSize) ->
+  pxFontSizes.map (value) -> value / baseFontSize
+
+# Convert an array of pixel sizes to rems
+convertPxToRem = (pxFontSizes, rootFontSize) ->
+  pxFontSizes.map (value) -> value / rootFontSize
+
 # The scale function returns an large object with all the typographic tools
 scale = (scaleFactor, lineHeight, baseFontSizes) ->
   scaleFactor = normalizeScaleFactor(scaleFactor)
   lineHeight = normalizeLineHeight(lineHeight)
   baseFontSizes = normalizeFontSizes(baseFontSizes)
+  baseFontSize = baseFontSizes[0] # The base font size will be the first one passed in
+  pxFontSizes = scaleFontSizesToPx(scaleFactor, baseFontSizes)
+  emFontSizes = convertPxToEm(pxFontSizes, baseFontSize)
+  remFontSizes = convertPxToRem(pxFontSizes, ROOT_FONT_SIZE)
 
   {
     scaleFactor: scaleFactor,
     lineHeight: lineHeight,
     fontSizes:
-      px: scaleFontSizesToPx(scaleFactor, baseFontSizes)
-      em: []
-      rem: []
+      px: pxFontSizes
+      em: emFontSizes
+      rem: remFontSizes
   }
 
 Typographilic =
