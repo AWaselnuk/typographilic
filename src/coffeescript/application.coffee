@@ -38,6 +38,9 @@ SCALE_FACTOR_MAP =
   doubleOctave: 4
   '1:4': 4
 
+# Round to 3 decimal places
+round = (num) -> Math.round(num * 1000) / 1000
+
 # Produce a float from the given scale factor
 # The scale factor map provides human readable short cuts
 normalizeScaleFactor = (scaleFactor) ->
@@ -87,18 +90,29 @@ convertPxToRem = (pxFontSizes, rootFontSize) ->
   pxFontSizes.map (value) -> value / rootFontSize
 
 # The scale function returns an large object with all the typographic tools
-scale = (scaleFactor, lineHeight, baseFontSizes) ->
+scale = (scaleFactor, baseLineHeight, baseFontSizes) ->
   scaleFactor = normalizeScaleFactor(scaleFactor)
-  lineHeight = normalizeLineHeight(lineHeight)
+
   baseFontSizes = normalizeFontSizes(baseFontSizes)
   baseFontSize = baseFontSizes[0] # The base font size will be the first one passed in
   pxFontSizes = scaleFontSizesToPx(scaleFactor, baseFontSizes)
   emFontSizes = convertPxToEm(pxFontSizes, baseFontSize)
   remFontSizes = convertPxToRem(pxFontSizes, ROOT_FONT_SIZE)
 
+  baseLineHeight = normalizeLineHeight(baseLineHeight)
+  pxLineHeight = Math.round(baseFontSize * baseLineHeight)
+  emLineHeight = round(pxLineHeight / baseFontSize)
+  remLineHeight = round(pxLineHeight / ROOT_FONT_SIZE)
+
   {
     scaleFactor: scaleFactor,
-    lineHeight: lineHeight,
+    baseLineHeight: baseLineHeight,
+    baseFontSizes: baseFontSizes,
+    baseFontSize: baseFontSize,
+    lineHeight:
+      px: pxLineHeight
+      em: emLineHeight
+      rem: remLineHeight
     fontSizes:
       px: pxFontSizes
       em: emFontSizes

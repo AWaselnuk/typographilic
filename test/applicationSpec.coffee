@@ -18,8 +18,11 @@ describe 'typographilic', ->
       expect(@scale).to.be.ok
       expect(@doubleScale).to.be.ok
 
-    it 'returns an object with scaleFactor, lineHeight, and fontSizes', ->
+    it 'returns an object with scaleFactor, baseLineHeight, baseFontSizes, baseFontSize, lineHeight, fontSizes', ->
       expect(@scale.scaleFactor).to.be.ok
+      expect(@scale.baseLineHeight).to.be.ok
+      expect(@scale.baseFontSizes).to.be.ok
+      expect(@scale.baseFontSize).to.be.ok
       expect(@scale.lineHeight).to.be.ok
       expect(@scale.fontSizes).to.be.ok
 
@@ -29,6 +32,12 @@ describe 'typographilic', ->
       expect(typographilic.scale('goldenRatio', 1.4, 16).scaleFactor).to.equal(1.618)
       expect(typographilic.scale('1:1.618', 1.4, 16).scaleFactor).to.equal(1.618)
       expect(typographilic.scale('1:phi', 1.4, 16).scaleFactor).to.equal(1.618)
+      expect(typographilic.scale('1.618', 1.4, 16).scaleFactor).to.equal(1.618)
+
+    it 'accepts values that are not in SCALE_FACTOR_MAP', ->
+      expect(typographilic.scale('1.999', 1.4, 16).scaleFactor).to.equal(1.999)
+      expect(typographilic.scale('1:1.999', 1.4, 16).scaleFactor).to.equal(1.999)
+      expect(typographilic.scale('6:13', 1.4, 16).scaleFactor).to.equal(2.167)
 
   describe 'scale().fontSizes', ->
 
@@ -71,4 +80,13 @@ describe 'typographilic', ->
         [0.625, 0.75, 1, 1.1875, 1.625, 1.9375, 2.625, 3.125, 4.25, 5.0625, 6.875, 8.1875, 11.125]
       )
 
+  describe 'scale().lineHeight', ->
 
+    before ->
+      @scale = typographilic.scale('goldenRatio', 1.6, 18)
+
+    it 'contains an object with line height in pixels, ems, and rems', ->
+      console.log @scale
+      expect(@scale.lineHeight.px).to.equal(29)
+      expect(@scale.lineHeight.em).to.equal(1.611)
+      expect(@scale.lineHeight.rem).to.equal(1.813)
