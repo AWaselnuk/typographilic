@@ -109,13 +109,13 @@
 
   convertPxToEm = function(pxFontSizes, baseFontSize) {
     return pxFontSizes.map(function(value) {
-      return value / baseFontSize;
+      return round(value / baseFontSize);
     });
   };
 
   convertPxToRem = function(pxFontSizes, rootFontSize) {
     return pxFontSizes.map(function(value) {
-      return value / rootFontSize;
+      return round(value / rootFontSize);
     });
   };
 

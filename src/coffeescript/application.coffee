@@ -87,11 +87,11 @@ scaleFontSizesToPx = (scaleFactor, baseFontSizes) ->
 
 # Convert an array of pixel sizes to ems
 convertPxToEm = (pxFontSizes, baseFontSize) ->
-  pxFontSizes.map (value) -> value / baseFontSize
+  pxFontSizes.map (value) -> round(value / baseFontSize)
 
 # Convert an array of pixel sizes to rems
 convertPxToRem = (pxFontSizes, rootFontSize) ->
-  pxFontSizes.map (value) -> value / rootFontSize
+  pxFontSizes.map (value) -> round(value / rootFontSize)
 
 # The scale function returns an large object with all the typographic tools
 scale = (scaleFactor, baseLineHeight, baseFontSizes) ->
