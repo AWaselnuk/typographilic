@@ -49,9 +49,7 @@
 
   ratioToFloat = function(ratio) {
     var values;
-    values = (ratio.split(':').filter(function(item) {
-      return item !== ':';
-    })).slice(0, 2);
+    values = ratio.split(':');
     return round(parseFloat(values[1] / parseFloat(values[0])));
   };
 
@@ -59,7 +57,7 @@
     if (SCALE_FACTOR_MAP[scaleFactor]) {
       return SCALE_FACTOR_MAP[scaleFactor];
     }
-    if (scaleFactor.indexOf(':') !== -1) {
+    if ((typeof scaleFactor === 'string') && (scaleFactor.indexOf(':') !== -1)) {
       return ratioToFloat(scaleFactor);
     }
     return parseFloat(scaleFactor);

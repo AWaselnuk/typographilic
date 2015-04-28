@@ -43,15 +43,15 @@ round = (num) -> Math.round(num * 1000) / 1000
 
 # Convert ratio like "5:8" to float
 ratioToFloat = (ratio) ->
-  values = (ratio.split(':').filter (item) -> item != ':')[0..1]
+  values = ratio.split(':')
   round(parseFloat values[1] / parseFloat values[0])
 
 # Produce a float from the given scale factor
 # The scale factor map provides human readable short cuts
 normalizeScaleFactor = (scaleFactor) ->
   return SCALE_FACTOR_MAP[scaleFactor] if SCALE_FACTOR_MAP[scaleFactor]
-  return ratioToFloat(scaleFactor) if scaleFactor.indexOf(':') != -1
-  return parseFloat scaleFactor
+  return ratioToFloat(scaleFactor) if (typeof scaleFactor == 'string') && (scaleFactor.indexOf(':') != -1)
+  parseFloat scaleFactor
 
 # Produce a float from the given lineHeight
 normalizeLineHeight = (lineHeight) ->
